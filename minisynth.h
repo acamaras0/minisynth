@@ -20,10 +20,10 @@
 
 typedef     struct s_note
 {
-    double duration;
+    float duration;
     char alternation;
     int octave;
-    double pitch;
+    float pitch;
     int tempo;
 }                  t_note;
 
