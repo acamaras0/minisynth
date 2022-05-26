@@ -39,9 +39,9 @@ void wave_triangle(SDL_AudioDeviceID audio_device, t_note *s)
     float sine_value = 0.0;
     for (int i = 0; i < FREQ * s->duration; i++) 
     {
-        sine_value = (sin(((float)i / (float)FREQ) * 2.0f * M_PI * s->pitch) * GAIN) + 2 + pow(3, -2);
-        sine_value *= -(sin(((float)i*3 / (float)FREQ) * 2.0f * M_PI * s->pitch) * GAIN) + pow(5, -2);
-        sine_value *= (sin(((float)i*5 / (float)FREQ) * 2.0f * M_PI * s->pitch) * GAIN) + pow(7, -2);
+        sine_value = (sin(((float)i / (float)FREQ) * 2.0f * M_PI * s->pitch) * GAIN) + 2 ;
+        sine_value += pow(3, -2) * (-(sin(((float)i*3 / (float)FREQ) * 2.0f * M_PI * s->pitch) * GAIN));
+        sine_value += pow(5, -2) * (sin(((float)i*5 / (float)FREQ) * 2.0f * M_PI * s->pitch) * GAIN) + pow(7, -2);
 
         int16_t sample = sine_value;
 
