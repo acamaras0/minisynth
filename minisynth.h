@@ -16,8 +16,8 @@
 # define E 20.60
 # define F 21.83
 # define G 24.50
-
-
+# define R 0
+ 
 
 typedef     struct s_note
 {
