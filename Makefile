@@ -1,5 +1,5 @@
 NAME = minisynth
-SRC = minisynth.c 
+SRC = minisynth.c waves.c
 OBJS = $(SRC:.c=.o)
 CFLAGS = -I/Users/acamaras/.brew/include/SDL2 -D_THREAD_SAFE
 LIB = -L/Users/acamaras/.brew/lib -lSDL2
