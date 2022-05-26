@@ -1,8 +1,21 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jdavis <marvin@42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/05/26 16:50:46 by jdavis            #+#    #+#              #
+#    Updated: 2022/05/26 17:05:23 by jdavis           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = minisynth
-SRC = minisynth.c waves.c
+SRC = main.c waves.c sound.c
 OBJS = $(SRC:.c=.o)
-CFLAGS = -I/Users/acamaras/.brew/include/SDL2 -D_THREAD_SAFE
-LIB = -L/Users/acamaras/.brew/lib -lSDL2
+CFLAGS = -I/Users/acamaras/.brew/include/SDL2 -D_THREAD_SAFE 
+LIB = -L/Users/acamaras/.brew/lib -lSDL2 -L. libft/libftprintf.a
+
 
 .PHONY: all clean fclean re
 

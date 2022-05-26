@@ -6,7 +6,7 @@
 /*   By: jdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:28:13 by jdavis            #+#    #+#             */
-/*   Updated: 2022/05/26 14:09:34 by jdavis           ###   ########.fr       */
+/*   Updated: 2022/05/26 18:55:41 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,42 +16,43 @@
 double ft_notes(char c)
 {
 	if (c == 'a')
-		return (A);
+		return (27.50);
 	if (c == 'b')
-		return (B);
+		return (30.87);
 	if (c == 'c')
-		return (C);
+		return (16.35);
 	if (c == 'd')
-		return (D);
+		return (18.35);
 	if (c == 'e')
-		return (E);
+		return (20.60);
 	if (c == 'f')
-		return (F);
+		return (21.83);
 	if (c == 'g')
-		return (G);
+		return (24.50);
 	if (c == 'r')
-		return (R);
+		return (0);
 	return (-1);
 }
 
 
-int main(int argc, char *argv[])
+void ft_collect_strc(int argc, char *argv[],  t_instru *tracks[])
 {
 	int fd;
 	char *line;
 	int	ret;
-	t_instru *tracks[50];
 	int j = 0;
 	int i;
 	t_instru *head = NULL;
 	int	prev_oct;
 	float prev_dur = 0;
 	int f;
+	int k;
+	char *temp = NULL;
 
 	if (argc == 1)
 	{
 		ft_printf("noo arguments dumbo\n");
-		return (-1);
+		return;
 	}
 	fd = open(argv[1], O_RDONLY);
 	if (fd)
@@ -65,24 +66,32 @@ int main(int argc, char *argv[])
 					++f;
 				f = ft_atoi(&line[f]);
 			}
-			ft_printf("tp  %i\n", f);
+			if (ft_strstr(line, "tracks"))
+				temp = ft_strdup(ft_strchr(line, ' '));
 			if (line[0] >= '0' && line[0] <= '9')
 			{
 				tracks[j] = (t_instru *) malloc (sizeof(t_instru));
 				if (!tracks[j])
 				{
 					ft_printf("tracks not true\n");
-					return (-1);
+					return;
 				}
 				tracks[j]->tempo = f;
-				ft_printf("inside %i\n", tracks[0]->tempo);
 				head = tracks[j];
 				i = 0;
 				prev_oct = 4;
+				if (temp)
+				{
+					ft_bzero(tracks[j]->waves, 9);
+					strncpy(tracks[j]->waves, temp, ft_strlen_stop(temp, ','));
+					while (*temp != ',' && *temp != '\0')
+						temp++;
+					if (*temp == ',')
+						++temp;	
+				}
 				while (line[i] != '\0')
 				{
 					tracks[j]->tempo = f;
-					ft_printf("side %i\n", tracks[0]->tempo);
 					while ((line[i] < 'a' ||  line[i] > 'g') && line[i] != 'r')
 						++i;
 					tracks[j]->pitch = ft_notes(line[i++]);
@@ -120,10 +129,11 @@ int main(int argc, char *argv[])
 						break ;
 					}
 					tracks[j]->next = (t_instru *) malloc (sizeof(t_instru));
+					ft_strcpy(tracks[j]->next->waves, tracks[j]->waves);
 					if (!tracks[j]->next)
 					{
 						ft_printf("problem\n");
-						return (0);
+						return;
 					}
 					tracks[j] = tracks[j]->next;
 					++i;
@@ -134,12 +144,7 @@ int main(int argc, char *argv[])
 			}
 		}
 	}
-	while (tracks[0])
-	{
-		ft_printf("pitch = %i    flats = %i    octa = %i     duration = %f tempo = %i\n", tracks[0]->pitch, tracks[0]->flat_sharp, tracks[0]->octa, tracks[0]->duration, tracks[0]->tempo);
-		tracks[0] = tracks[0]->next;
-	}
-	return (0);
+	//return (tracks);
 
 
 }
