@@ -19,7 +19,10 @@ LIB = -L/Users/acamaras/.brew/lib -lSDL2 -L. libft/libftprintf.a
 
 .PHONY: all clean fclean re
 
-all: $(NAME)
+all: libftprinta $(NAME)
+
+libftprinta:
+	make -C libft/ re
 
 $(NAME): $(OBJS)
 	gcc $(CFLAGS) $(LIB) -o $@ $^

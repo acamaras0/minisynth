@@ -6,7 +6,7 @@
 /*   By: jdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/26 10:22:35 by jdavis            #+#    #+#             */
-/*   Updated: 2022/05/26 17:38:46 by jdavis           ###   ########.fr       */
+/*   Updated: 2022/05/27 17:17:22 by jdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,12 @@
 # include <math.h>
 # define SAMPLE 1024
 # define FREQ 44100
-# define CHANNELS 2
+# define CHANNELS 1
 # define GAIN 5000
 
 typedef struct s_instru
 {
+	int tracks;
 	int tempo;
 	double pitch;
 	int flat_sharp;
