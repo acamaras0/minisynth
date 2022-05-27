@@ -1,5 +1,8 @@
 # minisynth
 
+72h school project
+
+
 1. If you don't have the SDL library installed, run:
 
             brew install sdl2
