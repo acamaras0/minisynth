@@ -5,6 +5,7 @@
             brew install sdl2
 
 2. Use these commands to get the cflags and lib flags for your Makefile:
+
             sdl2-config --cflags
             sdl2-config --libs
 
