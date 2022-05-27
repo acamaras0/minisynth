@@ -17,11 +17,6 @@ int main(int argc, char *argv[])
 	t_instru *tracks[50];
 	ft_collect_strc(argc, argv, tracks);
 
-	/*while (tracks[16])
-	{
-		ft_printf("%s\n", tracks[16]->waves);
-		tracks[16] = tracks[16]->next;
-	}*/
     SDL_Init(SDL_INIT_AUDIO);
 
     // the representation of our audio device in SDL:
@@ -38,8 +33,7 @@ int main(int argc, char *argv[])
 
     audio_device = SDL_OpenAudioDevice(
     NULL, 0, &audio_spec, NULL, 0);
-		//ft_printf("%s\n", tracks[0]->waves);
-	
+
 	while (tracks[0])
 	{	
 		if (ft_strstr(tracks[0]->waves, "sine"))
@@ -57,7 +51,7 @@ int main(int argc, char *argv[])
     //unpausing the audio device (starts playing):
     SDL_PauseAudioDevice(audio_device, 0);
 
-    SDL_Delay(3000);
+    SDL_Delay(100000);
 
     SDL_CloseAudioDevice(audio_device);
     SDL_Quit();
