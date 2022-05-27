@@ -50,8 +50,7 @@ int main(int argc, char *argv[])
 
     //unpausing the audio device (starts playing):
     SDL_PauseAudioDevice(audio_device, 0);
-
-    SDL_Delay(100000);
+    SDL_Delay(60000);
 
     SDL_CloseAudioDevice(audio_device);
     SDL_Quit();
