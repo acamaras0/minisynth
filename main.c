@@ -39,6 +39,7 @@ int main(int argc, char *argv[])
     audio_device = SDL_OpenAudioDevice(
     NULL, 0, &audio_spec, NULL, 0);
 		//ft_printf("%s\n", tracks[0]->waves);
+	
 	while (tracks[0])
 	{	
 		if (ft_strstr(tracks[0]->waves, "sine"))
